@@ -21,7 +21,7 @@ pipeline {
     stage('deploy') {
       steps {
         withAWS(credentials: 'aws-ci', region: 'us-east-1') {
-          sh 'aws eks update-kubeconfig --region us-east-1 --name ferocious-lofi-ant'
+          sh 'aws eks update-kubeconfig --region us-east-1 --name ahmad-sami'
           sh 'kubectl apply -f ./k8s/deployment.yaml'
         }
       }
