@@ -1,20 +1,15 @@
 name: ci workflow
 on:
-  pull_request:
+  push:
     branches:
       - "main"
 jobs:
-  ci-workflow:
-    name: ci workflow
+  ci:
+    name: ci
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-
-      - name: build the app
-        run: "mvn clean package"
-        shell: bash
-
-      - name: test the app
-        run: "mvn test"
-        shell: bash
+      - name: checkout step
+        uses: actions/checkout@v5
+      
+      - name: build
+        run: mvn clean package
