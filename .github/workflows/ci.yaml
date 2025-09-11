@@ -13,3 +13,4 @@ jobs:
       
       - name: build
         run: mvn clean package
+        shell: bash
