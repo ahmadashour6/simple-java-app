@@ -17,7 +17,8 @@ jobs:
       - name: post-build
         env:
           ANOTHER_REPO: ${{ secrets.ANOTHER_REPO }} 
-        run: curl -L \
+        run: |
+          curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${ANOTHER_REPO}" \
