@@ -22,5 +22,5 @@ jobs:
       - name: docker build and push
         run: |
           docker build -t workflow . 
-          docker tag workflow ashour66/workflow:$GITHUB_REF 
-          docker push ashour66/workflow:$GITHUB_REF 
+          docker tag workflow ashour66/workflow:${GITHUB_REF#refs/heads/} 
+          docker push ashour66/workflow:${GITHUB_REF#refs/heads/}
