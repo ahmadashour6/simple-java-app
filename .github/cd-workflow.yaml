@@ -1,0 +1,39 @@
+name: cd project
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs: 
+  cd-workflow:
+    name: cd-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+      
+      - name: dockerhub login
+        uses: docker/login-action@v3
+        with:
+          username: ashour66
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: docker build and push
+        run: |
+          docker build -t java-app1 . 
+          docker tag java-app1 ashour66/java-app1:latest
+          docker push ashour66/java-app1:latest
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v5.0.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: deploy to k8s
+        run: |
+          aws eks update-kubeconfig --region us-east-1 --name eks
+          kubectl apply -f ./k8s/deployment.yaml
+        shell: bash
