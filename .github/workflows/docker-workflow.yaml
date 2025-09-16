@@ -2,6 +2,8 @@ name: docker workflow
 
 on:
   push:
+    branches:
+      - 'main'
 
 jobs:
   docker_workflow:
