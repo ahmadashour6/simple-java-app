@@ -3,7 +3,7 @@ name: cd project
 on:
   push:
     branches:
-      - 'main'
+      - "main"
 
 jobs: 
   cd-workflow:
