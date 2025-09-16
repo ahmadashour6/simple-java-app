@@ -6,7 +6,7 @@ on:
 jobs:
   docker_workflow:
     name: docker workflow
-    if: GITHUB_REF == 'main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
   
     steps:
