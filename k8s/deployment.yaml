@@ -17,8 +17,8 @@ spec:
         app: java-app
     spec:
       containers:
-        - name: java-app
-          image: ashour66/java-app
+        - name: java-app1
+          image: ashour66/java-app1
           ports:
             - containerPort: 80
               protocol: TCP
